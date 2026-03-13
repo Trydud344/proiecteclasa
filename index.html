@@ -113,14 +113,6 @@
             pointer-events: auto;
         }
 
-        /* Ajustari speciale pentru efectul de zoom pe mobil */
-        @media (max-width: 768px) {
-            .project-card.active .close-btn {
-                top: 48px;
-                right: 48px;
-            }
-        }
-
         .ppt-frame {
             width: 100%;
             height: 100%;
@@ -184,7 +176,7 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-[32px] pt-[64px] pb-[32px] md:p-0">
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-6 pt-16 md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
                             <!-- Icon Fizica mic -->
@@ -221,7 +213,7 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-[32px] pt-[64px] pb-[32px] md:p-0">
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-6 pt-16 md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
                             <!-- Icon Chimie mic -->
@@ -250,15 +242,15 @@
 
     <script>
         const overlay = document.getElementById('overlay');
-        let isAnimating = false; // Flag crucial pentru a opri 'spamming-ul' animatiilor
+        let isAnimating = false;
 
         function expandCard(card) {
-            // Daca se afla intr-o tranzitie, ignoram orice click
             if (isAnimating || card.classList.contains('active')) return;
             
             isAnimating = true;
             
             const rect = card.getBoundingClientRect();
+            const isMobile = window.innerWidth <= 768;
             
             const placeholder = document.createElement('div');
             placeholder.className = 'placeholder-ghost';
@@ -269,47 +261,58 @@
             
             card._placeholder = placeholder;
             
-            // Calculam centrul cutiei raportat la fereastra
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const windowCenterX = window.innerWidth / 2;
-            const windowCenterY = window.innerHeight / 2;
-            
-            // Calculam distanta exacta pe care transform-ul trebuie sa o acopere de la centrul ecranului
-            const translateX = centerX - windowCenterX;
-            const translateY = centerY - windowCenterY;
-
-            // Fixam "top" si "left" mereu la 50% pentru a evita jittering-ul arcuit
+            // Setari de baza
             card.style.position = 'fixed';
-            card.style.top = '50%';
-            card.style.left = '50%';
-            card.style.width = rect.width + 'px';
-            card.style.height = rect.height + 'px';
             card.style.margin = '0';
-            // Translate porneste exact de la locatia din grid a elementului
-            card.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
             card.style.zIndex = '50';
+
+            if (isMobile) {
+                // Logica ultra-simpla pentru mobil (Fara transformari matematice)
+                card.style.top = rect.top + 'px';
+                card.style.left = rect.left + 'px';
+                card.style.width = rect.width + 'px';
+                card.style.height = rect.height + 'px';
+                card.style.transform = 'none';
+                card.style.borderRadius = '32px';
+            } else {
+                // Logica calculata pentru Desktop
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const windowCenterX = window.innerWidth / 2;
+                const windowCenterY = window.innerHeight / 2;
+                
+                const translateX = centerX - windowCenterX;
+                const translateY = centerY - windowCenterY;
+
+                card.style.top = '50%';
+                card.style.left = '50%';
+                card.style.width = rect.width + 'px';
+                card.style.height = rect.height + 'px';
+                card.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+            }
             
-            card.getBoundingClientRect(); // Fortam recalcularea
+            card.getBoundingClientRect(); // Fortam aplicarea stilurilor inainte de tranzitie
             
             requestAnimationFrame(() => {
                 card.classList.add('active');
                 
-                const isMobile = window.innerWidth <= 768;
-                
-                card.style.width = isMobile ? 'calc(100vw + 64px)' : '90vw';
-                card.style.height = isMobile ? 'calc(100dvh + 64px)' : '85vh';
-                // Transform se muta exact in centrul ecranului fluid si liniar
-                card.style.transform = 'translate(-50%, -50%)';
+                if (isMobile) {
+                    card.style.top = '0px';
+                    card.style.left = '0px';
+                    card.style.width = '100vw';
+                    card.style.height = '100dvh';
+                    card.style.borderRadius = '0px';
+                } else {
+                    card.style.width = '90vw';
+                    card.style.height = '85vh';
+                    card.style.transform = 'translate(-50%, -50%)';
+                }
                 
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden'; 
             });
 
-            // Deblocam interactiunile dupa ce se termina cursa vizuala
-            setTimeout(() => {
-                isAnimating = false;
-            }, 600);
+            setTimeout(() => { isAnimating = false; }, 600);
         }
 
         function closeAllCards() {
@@ -323,22 +326,30 @@
                 card.classList.remove('active');
                 
                 const placeholder = card._placeholder;
+                const isMobile = window.innerWidth <= 768;
                 
                 if (placeholder) {
                     const rect = placeholder.getBoundingClientRect();
                     
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    const windowCenterX = window.innerWidth / 2;
-                    const windowCenterY = window.innerHeight / 2;
-                    
-                    const translateX = centerX - windowCenterX;
-                    const translateY = centerY - windowCenterY;
+                    if (isMobile) {
+                        card.style.top = rect.top + 'px';
+                        card.style.left = rect.left + 'px';
+                        card.style.width = rect.width + 'px';
+                        card.style.height = rect.height + 'px';
+                        card.style.borderRadius = '32px';
+                    } else {
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+                        const windowCenterX = window.innerWidth / 2;
+                        const windowCenterY = window.innerHeight / 2;
+                        
+                        const translateX = centerX - windowCenterX;
+                        const translateY = centerY - windowCenterY;
 
-                    card.style.width = rect.width + 'px';
-                    card.style.height = rect.height + 'px';
-                    // Re-intoarcere la locul curent din grid (chiar daca s-a dat scroll in spate)
-                    card.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+                        card.style.width = rect.width + 'px';
+                        card.style.height = rect.height + 'px';
+                        card.style.transform = `translate(calc(-50% + ${translateX}px), calc(-50% + ${translateY}px))`;
+                    }
                     
                     setTimeout(() => {
                         if (!card.classList.contains('active')) {
@@ -350,6 +361,7 @@
                             card.style.margin = '';
                             card.style.transform = '';
                             card.style.zIndex = '';
+                            card.style.borderRadius = '';
                             
                             if (placeholder.parentNode) {
                                 placeholder.parentNode.removeChild(placeholder);
@@ -363,9 +375,7 @@
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto'; 
             
-            setTimeout(() => {
-                isAnimating = false;
-            }, 600);
+            setTimeout(() => { isAnimating = false; }, 600);
         }
 
         document.addEventListener('keydown', (e) => {
