@@ -81,14 +81,15 @@
             pointer-events: none;
         }
 
+        /* Forțăm ascunderea pentru a nu strica flexbox-ul cutiilor minimizate */
         .content-hidden {
-            display: none;
+            display: none !important;
             opacity: 0;
             transition: opacity 0.5s ease 0.3s; 
         }
 
         .project-card.active .content-hidden {
-            display: flex;
+            display: flex !important;
             opacity: 1;
         }
 
@@ -167,7 +168,7 @@
                 
                 <!-- Initial State -->
                 <div class="placeholder-ui text-center">
-                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
                         <!-- Icon Fizica (Atom) -->
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M12 9c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M3 12c0-1.657 4.03-3 9-3s9 1.343 9 3-4.03 3-9 3-9-1.343-9-3z"></path></svg>
                     </div>
@@ -176,9 +177,9 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
+                <div class="content-hidden w-full h-full flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
-                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <!-- Icon Fizica mic -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path></svg>
                         </div>
@@ -204,7 +205,7 @@
                 
                 <!-- Initial State -->
                 <div class="placeholder-ui text-center">
-                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
                         <!-- Icon Cercetare (Microscop) -->
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
                     </div>
@@ -213,9 +214,9 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
+                <div class="content-hidden w-full h-full flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
-                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <!-- Icon Cercetare mic (Microscop) -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
                         </div>
@@ -235,6 +236,152 @@
 
         </div>
     </main>
+
+    <!-- Sectiune noua (Fizica din spatele obiectelor obisnuite) -->
+    <section class="max-w-6xl mx-auto text-center mt-32 mb-10 md:mb-16">
+        <h2 class="text-3xl md:text-6xl font-light tracking-tighter mb-4">
+            <span class="font-semibold">Fizica</span> din spatele obiectelor obișnuite
+        </h2>
+        <p class="text-zinc-500 text-base md:text-lg font-light italic mb-12">Aplicații practice ale undelor electromagnetice</p>
+
+        <!-- Grila perfect aliniata la restul site-ului -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <!-- 1. Radio -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">1) Radio</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 2. TV -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">2) TV</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 3. Detectoare de metale -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">3) Detectoare de metale</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Infraroșu & Reguli</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 4. Cuptorul cu microunde -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">4) Cuptorul cu microunde</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Microunde & Aplicații</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 5. Telefonul -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">5) Telefonul</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Comunicații mobile</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 6. Radio locatie -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a10 10 0 0 1 16 0"/><path d="M12 10v10"/><path d="M8 20h8"/><circle cx="12" cy="10" r="2"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">6) Radio locație</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">& Radio astronomie</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+            <!-- 7. Masuri de protectie -->
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">7) Măsuri de protecție</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">A persoanelor și a mediului</p>
+                </div>
+                <!-- Continut minimal centrat -->
+                <div class="content-hidden w-full h-full flex-col items-center justify-center p-6 text-center">
+                    <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <!-- Footer cu linie pe toata latimea si elemente centrate vertical -->
     <footer class="w-full border-t border-zinc-900 mt-24 md:mt-32">
