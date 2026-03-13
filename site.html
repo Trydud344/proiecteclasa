@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>160 Ani de Știință | Clasa 11 D - CNU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --amoled-black: #000000;
+            --surface-grey: #121212;
+            --border-grey: #2a2a2a;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--amoled-black);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Efectul de Fade Gradual in partea de sus */
+        .top-fade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, var(--amoled-black) 20%, transparent 100%);
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: var(--surface-grey);
+            border: 1px solid var(--border-grey);
+            box-sizing: border-box; 
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card {
+            height: 300px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card.active {
+            cursor: default;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 40;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .placeholder-ui {
+            transition: opacity 0.3s ease;
+            width: 100%;
+        }
+
+        .project-card.active .placeholder-ui {
+            opacity: 0;
+            position: absolute; 
+            pointer-events: none;
+        }
+
+        .content-hidden {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.3s; 
+        }
+
+        .project-card.active .content-hidden {
+            display: flex;
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.3s;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card.active .close-btn {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ppt-frame {
+            width: 100%;
+            height: 100%;
+            background: #050505;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--amoled-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-grey);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-12">
+
+    <!-- Fade gradual top -->
+    <div class="top-fade"></div>
+
+    <!-- Overlay for focused project -->
+    <div id="overlay" class="overlay" onclick="closeAllCards()"></div>
+
+    <header class="max-w-6xl mx-auto text-center mb-16 md:mb-20 mt-6 md:mt-10">
+        <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400">
+            Colegiul Național „Unirea” • Clasa 11 D
+        </div>
+        
+        <h1 class="text-4xl md:text-7xl font-light tracking-tighter mb-4">
+            160 Ani de <span class="font-semibold">Știință</span>
+        </h1>
+        <p class="text-zinc-500 text-base md:text-lg font-light italic">Arhiva digitală de proiecte și cercetări științifice</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="projectGrid">
+            
+            <!-- Project 1 -->
+            <div class="glass-card project-card rounded-[32px] p-5 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                
+                <!-- Initial State -->
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <!-- Icon Fizica (Atom) -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M12 9c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M3 12c0-1.657 4.03-3 9-3s9 1.343 9 3-4.03 3-9 3-9-1.343-9-3z"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Oamenii de știință care au schimbat lumea</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Elev: Ionescu Andrei</p>
+                </div>
+
+                <!-- Expanded Content -->
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-4 pt-14 md:p-2 pb-10 md:pb-2">
+                    <div class="md:w-1/3 flex flex-col justify-center">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                            <!-- Icon Fizica mic -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path></svg>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
+                        <p class="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">
+                            Acest proiect explorează figurile emblematice ale fizicii și modul în care descoperirile lor au redefinit înțelegerea noastră asupra timpului și spațiului.
+                        </p>
+                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
+                            <p class="text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3 ppt-frame !h-auto aspect-[476/312] md:!h-full md:aspect-auto mt-4 md:mt-0 flex-shrink-0">
+                        <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="glass-card project-card rounded-[32px] p-5 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                
+                <!-- Initial State -->
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <!-- Icon Chimie (Flask) -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v8L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45L14 10V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Chimie: Catalizatori Bio</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Elev: Popescu Maria</p>
+                </div>
+
+                <!-- Expanded Content -->
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-4 pt-14 md:p-2 pb-10 md:pb-2">
+                    <div class="md:w-1/3 flex flex-col justify-center">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
+                            <!-- Icon Chimie mic -->
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v8L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45L14 10V2"></path></svg>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-4">Enzimele ca și Catalizatori Biologici</h2>
+                        <p class="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">
+                            O privire asupra modului în care reacțiile chimice în organismele vii sunt accelerate de milioane de ori fără a crește temperatura mediului.
+                        </p>
+                    </div>
+                    <div class="w-full md:w-2/3 ppt-frame !h-auto aspect-[476/312] md:!h-full md:aspect-auto mt-4 md:mt-0 flex-shrink-0">
+                        <div class="text-zinc-600 flex flex-col items-center">
+                            <svg class="mb-4" width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l5 5-5 5M4 4v7a4 4 0 004 4h12"></path></svg>
+                            <p>S-a încărcat previzualizarea prezentării...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto border-t border-zinc-900 mt-32 py-12 text-center text-zinc-600 text-xs tracking-widest uppercase font-medium">
+        <p>2026 • Colegiul Național UNIREA • Clasa 11 D</p>
+    </footer>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+
+        function expandCard(card) {
+            if (card.classList.contains('active')) return;
+            
+            closeAllCards(); 
+            
+            const rect = card.getBoundingClientRect();
+            
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder-ghost';
+            placeholder.style.width = rect.width + 'px';
+            placeholder.style.height = rect.height + 'px';
+            placeholder.style.flexShrink = '0';
+            card.parentNode.insertBefore(placeholder, card);
+            
+            card._placeholder = placeholder;
+            
+            card.style.position = 'fixed';
+            card.style.top = rect.top + 'px';
+            card.style.left = rect.left + 'px';
+            card.style.width = rect.width + 'px';
+            card.style.height = rect.height + 'px';
+            card.style.margin = '0';
+            card.style.transform = 'translate(0, 0)';
+            card.style.zIndex = '50';
+            
+            card.getBoundingClientRect();
+            
+            requestAnimationFrame(() => {
+                card.classList.add('active');
+                
+                const isMobile = window.innerWidth <= 768;
+                
+                card.style.top = '50%';
+                card.style.left = '50%';
+                card.style.width = isMobile ? '100vw' : '90vw';
+                card.style.height = isMobile ? '100dvh' : '85vh';
+                card.style.borderRadius = isMobile ? '0px' : '32px';
+                card.style.transform = 'translate(-50%, -50%)';
+                
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            });
+        }
+
+        function closeAllCards() {
+            const activeCards = document.querySelectorAll('.project-card.active');
+            
+            activeCards.forEach(card => {
+                card.classList.remove('active');
+                
+                const placeholder = card._placeholder;
+                
+                if (placeholder) {
+                    const rect = placeholder.getBoundingClientRect();
+                    card.style.top = rect.top + 'px';
+                    card.style.left = rect.left + 'px';
+                    card.style.width = rect.width + 'px';
+                    card.style.height = rect.height + 'px';
+                    card.style.transform = 'translate(0, 0)';
+                    
+                    setTimeout(() => {
+                        if (!card.classList.contains('active')) {
+                            card.style.position = '';
+                            card.style.top = '';
+                            card.style.left = '';
+                            card.style.width = '';
+                            card.style.height = '';
+                            card.style.margin = '';
+                            card.style.transform = '';
+                            card.style.zIndex = '';
+                            card.style.borderRadius = '';
+                            
+                            if (placeholder.parentNode) {
+                                placeholder.parentNode.removeChild(placeholder);
+                            }
+                            card._placeholder = null;
+                        }
+                    }, 600);
+                }
+            });
+            
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAllCards();
+        });
+    </script>
+</body>
+</html>
