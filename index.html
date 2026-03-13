@@ -141,6 +141,9 @@
         .project-card.active .placeholder-ui {
             opacity: 0;
             position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             pointer-events: none;
         }
 
@@ -237,28 +240,28 @@
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Băieților</p>
                 </div>
 
-                <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
-                    <div class="md:w-1/3 flex flex-col justify-center">
+                <!-- Expanded Content (Fixat la dimensiunea tinta pentru a preveni text reflow-ul) -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <!-- Icon Fizica mic -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path></svg>
                         </div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
-                        <p class="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Acest proiect explorează figurile emblematice ale fizicii și modul în care descoperirile lor au redefinit înțelegerea noastră asupra timpului și spațiului.
                         </p>
-                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                            <p class="text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10 hidden sm:block">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
                         </div>
                     </div>
-                    <!-- Wrapper iframe si hint-ul pe mobil -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block mt-4 md:mt-0 flex-shrink-0 h-auto md:h-full">
-                        <div class="ppt-frame w-full !h-auto aspect-[476/312] md:!h-full md:aspect-auto">
-                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                    <!-- Wrapper iframe -->
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
-                        <!-- Hint mobil pentru scroll -->
-                        <div class="flex md:hidden items-center justify-center gap-2 mt-4 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse">
+                        <!-- Hint mobil -->
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
                             <span>Glisează orizontal pentru slide-uri</span>
                         </div>
@@ -283,27 +286,27 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-4 pt-16 pb-6 md:p-0">
-                    <div class="md:w-1/3 flex flex-col justify-center">
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <!-- Icon Cercetare mic (Microscop) -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
                         </div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
-                        <p class="text-zinc-400 text-sm md:text-base mb-6 leading-relaxed">
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Acest proiect celebrează contribuțiile esențiale ale femeilor pionier în știință, de la descoperirea radioactivității la fundamentarea structurii ADN-ului.
                         </p>
-                        <div class="p-4 bg-white/5 rounded-2xl border border-white/10">
-                            <p class="text-sm text-zinc-400 italic">"Nimic în viață nu este de temut, trebuie doar înțeles." <br><span class="text-xs text-zinc-500 mt-1 inline-block">- Marie Curie</span></p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10 hidden sm:block">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Nimic în viață nu este de temut, trebuie doar înțeles." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Marie Curie</span></p>
                         </div>
                     </div>
-                    <!-- Wrapper iframe si hint-ul pe mobil -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block mt-4 md:mt-0 flex-shrink-0 h-auto md:h-full">
-                        <div class="ppt-frame w-full !h-auto aspect-[476/288] md:!h-full md:aspect-auto">
-                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                    <!-- Wrapper iframe -->
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
-                        <!-- Hint mobil pentru scroll -->
-                        <div class="flex md:hidden items-center justify-center gap-2 mt-4 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse">
+                        <!-- Hint mobil -->
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
                             <span>Glisează orizontal pentru slide-uri</span>
                         </div>
@@ -336,8 +339,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">1) Radio</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat non-scrollable statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -355,8 +358,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">2) TV</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -374,8 +377,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">3) Detectoare de metale</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Infraroșu & Reguli</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -393,8 +396,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">4) Cuptorul cu microunde</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Microunde & Aplicații</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -412,8 +415,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">5) Telefonul</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Comunicații mobile</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -431,8 +434,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">6) Radio locație</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">& Radio astronomie</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -450,8 +453,8 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">7) Măsuri de protecție</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">A persoanelor și a mediului</p>
                 </div>
-                <!-- Continut minimal centrat -->
-                <div class="content-hidden w-full h-full flex-col items-center justify-center p-5 md:p-8 overflow-hidden text-center">
+                <!-- Continut minimal centrat statice la expasiune -->
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-6 md:p-10 overflow-hidden text-center">
                     <h2 class="text-4xl md:text-6xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl">Informațiile pentru acest capitol sunt în lucru.</p>
                 </div>
@@ -468,7 +471,7 @@
                 2026 • Colegiul Național UNIREA • Clasa 11 D
             </p>
 
-            <!-- Spinning Text Animation (React Bits adaptat in Vanilla JS) -->
+            <!-- Spinning Text Animation -->
             <div class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 mt-2 md:mt-3 w-20 h-20 md:w-24 md:h-24 text-zinc-500 hover:text-white transition-colors duration-300 pointer-events-none md:pointer-events-auto cursor-default">
                 <div id="circular-text" class="relative w-full h-full animate-[spin_12s_linear_infinite] text-[8px] md:text-[9.5px] font-bold">
                     <!-- Javascript va injecta literele aici -->
@@ -508,6 +511,13 @@
             
             isAnimating = true;
             
+            // TRUC MAGIC: Blocăm exact lățimea curentă a elementului de "placeholder"
+            // Astfel, pe masură ce cardul se extinde, textul NU mai are unde să își schimbe forma (wrap) 
+            const ui = card.querySelector('.placeholder-ui');
+            if (ui) {
+                ui.style.width = ui.getBoundingClientRect().width + 'px';
+            }
+            
             const rect = card.getBoundingClientRect();
             const isMobile = window.innerWidth <= 768;
             
@@ -520,6 +530,8 @@
             
             card._placeholder = placeholder;
             
+            // FLIP - Setup (Fără tranziție pentru a evita săriturile)
+            card.style.transition = 'none';
             card.style.position = 'fixed';
             card.style.margin = '0';
             card.style.zIndex = '50';
@@ -538,6 +550,9 @@
             }
             
             card.getBoundingClientRect(); // Fortam reflow-ul
+            
+            // FLIP - Play (Reactivam tranziția)
+            card.style.transition = '';
             
             requestAnimationFrame(() => {
                 card.classList.add('active');
@@ -571,6 +586,10 @@
 
             isAnimating = true;
             
+            // Permitem scroll-ul imediat ce apasam X, astfel incat cutia sa culiseze odata cu pagina
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
+
             activeCards.forEach(card => {
                 card.classList.remove('active');
                 
@@ -578,19 +597,35 @@
                 const isMobile = window.innerWidth <= 768;
                 
                 if (placeholder) {
-                    const rect = placeholder.getBoundingClientRect();
+                    // Schimbam din Fixed (fata de ecran) in Absolute (fata de document)
+                    card.style.transition = 'none';
+
+                    const currentRect = card.getBoundingClientRect();
+                    const scrollY = window.scrollY;
+                    const scrollX = window.scrollX;
+
+                    card.style.position = 'absolute';
+                    card.style.transform = 'none'; // Am calculat deja pozitia vizuala exacta in px
+                    card.style.top = (currentRect.top + scrollY) + 'px';
+                    card.style.left = (currentRect.left + scrollX) + 'px';
+                    card.style.width = currentRect.width + 'px';
+                    card.style.height = currentRect.height + 'px';
+
+                    card.getBoundingClientRect(); // Reflow
+
+                    // Pornim tranzitia
+                    card.style.transition = '';
+
+                    const targetRect = placeholder.getBoundingClientRect();
                     
-                    // Directia spre grila
-                    card.style.top = rect.top + 'px';
-                    card.style.left = rect.left + 'px';
-                    card.style.width = rect.width + 'px';
-                    card.style.height = rect.height + 'px';
+                    // Directia spre grila, tinand cont de scroll (pentru a fi blocata pe document, nu pe ecran)
+                    card.style.top = (targetRect.top + scrollY) + 'px';
+                    card.style.left = (targetRect.left + scrollX) + 'px';
+                    card.style.width = targetRect.width + 'px';
+                    card.style.height = targetRect.height + 'px';
                     
                     if (isMobile) {
                         card.style.borderRadius = '32px';
-                        card.style.transform = 'none';
-                    } else {
-                        card.style.transform = 'translate(0, 0)';
                     }
                     
                     setTimeout(() => {
@@ -605,6 +640,12 @@
                             card.style.zIndex = '';
                             card.style.borderRadius = '';
                             
+                            // Eliberam restrictia de latime dupa terminarea animatiei
+                            const ui = card.querySelector('.placeholder-ui');
+                            if (ui) {
+                                ui.style.width = '';
+                            }
+                            
                             if (placeholder.parentNode) {
                                 placeholder.parentNode.removeChild(placeholder);
                             }
@@ -613,9 +654,6 @@
                     }, 600);
                 }
             });
-            
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; 
             
             setTimeout(() => { isAnimating = false; }, 600);
         }
