@@ -13,6 +13,8 @@
             --surface-grey: #121212;
             --border-grey: #2a2a2a;
             --text-dim: #a0a0a0;
+            --x: 50vw;
+            --y: 50vh;
         }
 
         body {
@@ -45,6 +47,59 @@
             height: 300px;
             cursor: pointer;
             position: relative;
+            --active: 0;
+        }
+
+        /* Activam efectul la hover */
+        .project-card:not(.active):hover {
+            --active: 1;
+        }
+
+        /* Efectul luminos de pe marginea (border) cutiei */
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px; /* Grosimea border-ului care strălucește */
+            background: radial-gradient(
+                circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+                rgba(255, 255, 255, 0.4),
+                transparent 250px
+            );
+            background-attachment: fixed;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: var(--active, 0);
+            transition: opacity 0.2s ease;
+            z-index: 20;
+        }
+
+        /* Efectul luminos din interiorul (background) cutiei */
+        .project-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+                rgba(255, 255, 255, 0.05),
+                transparent 250px
+            );
+            background-attachment: fixed;
+            opacity: var(--active, 0);
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Dezactivam glow-ul cand cutia e marita pe tot ecranul */
+        .project-card.active::before,
+        .project-card.active::after {
+            display: none !important;
         }
 
         .project-card.active {
@@ -115,8 +170,6 @@
         }
 
         .ppt-frame {
-            width: 100%;
-            height: 100%;
             background: #050505;
             border-radius: 12px;
             display: flex;
@@ -191,8 +244,16 @@
                             <p class="text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
                         </div>
                     </div>
-                    <div class="w-full md:w-2/3 ppt-frame !h-auto aspect-[476/312] md:!h-full md:aspect-auto mt-4 md:mt-0 flex-shrink-0">
-                        <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                    <!-- Wrapper pentru iframe si hint-ul pe mobil -->
+                    <div class="w-full md:w-2/3 flex flex-col md:block mt-4 md:mt-0 flex-shrink-0 h-auto md:h-full">
+                        <div class="ppt-frame w-full !h-auto aspect-[476/312] md:!h-full md:aspect-auto">
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <!-- Hint mobil pentru scroll -->
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-4 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,8 +289,16 @@
                             <p class="text-sm text-zinc-400 italic">"Nimic în viață nu este de temut, trebuie doar înțeles." <br><span class="text-xs text-zinc-500 mt-1 inline-block">- Marie Curie</span></p>
                         </div>
                     </div>
-                    <div class="w-full md:w-2/3 ppt-frame !h-auto aspect-[476/288] md:!h-full md:aspect-auto mt-4 md:mt-0 flex-shrink-0">
-                        <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                    <!-- Wrapper pentru iframe si hint-ul pe mobil -->
+                    <div class="w-full md:w-2/3 flex flex-col md:block mt-4 md:mt-0 flex-shrink-0 h-auto md:h-full">
+                        <div class="ppt-frame w-full !h-auto aspect-[476/288] md:!h-full md:aspect-auto">
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <!-- Hint mobil pentru scroll -->
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-4 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -546,6 +615,13 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeAllCards();
         });
+
+        // Logica pentru efectul de glow la cursor
+        const updateCursor = ({ x, y }) => {
+            document.documentElement.style.setProperty('--x', x);
+            document.documentElement.style.setProperty('--y', y);
+        };
+        document.body.addEventListener('pointermove', updateCursor);
     </script>
 </body>
 </html>
