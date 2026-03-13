@@ -137,7 +137,7 @@
         }
     </style>
 </head>
-<body class="p-4 md:p-12">
+<body class="p-4 md:p-12 pb-0 md:pb-0">
 
     <!-- Fade gradual top -->
     <div class="top-fade"></div>
@@ -236,11 +236,46 @@
         </div>
     </main>
 
-    <footer class="max-w-6xl mx-auto border-t border-zinc-900 mt-32 py-12 text-center text-zinc-600 text-xs tracking-widest uppercase font-medium">
-        <p>2026 • Colegiul Național UNIREA • Clasa 11 D</p>
+    <!-- Footer cu linie pe toata latimea si elemente centrate vertical -->
+    <footer class="w-full border-t border-zinc-900 mt-24 md:mt-32">
+        <div class="relative max-w-6xl mx-auto py-8 md:py-10 px-4 flex items-center justify-center">
+            
+            <p class="text-center text-zinc-600 text-xs tracking-widest uppercase font-medium z-10">
+                2026 • Colegiul Național UNIREA • Clasa 11 D
+            </p>
+
+            <!-- Spinning Text Animation (React Bits adaptat in Vanilla JS) -->
+            <div class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 mt-2 md:mt-3 w-20 h-20 md:w-24 md:h-24 text-zinc-500 hover:text-white transition-colors duration-300 pointer-events-none md:pointer-events-auto cursor-default">
+                <div id="circular-text" class="relative w-full h-full animate-[spin_12s_linear_infinite] text-[8px] md:text-[9.5px] font-bold">
+                    <!-- Javascript va injecta literele aici -->
+                </div>
+            </div>
+            
+        </div>
     </footer>
 
     <script>
+        // Logica pentru textul rotativ
+        const textStr = "MADE BY IVASCU ♥ MADE BY IVASCU ♥ ";
+        const circularTextContainer = document.getElementById('circular-text');
+        
+        if (circularTextContainer) {
+            const chars = textStr.split('');
+            const degree = 360 / chars.length;
+            
+            chars.forEach((char, i) => {
+                const span = document.createElement('span');
+                // Adaugam spatiu real (non-breaking) daca e gol, altfel caracterul
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                // Clasa pozitioneaza fiecare caracter la top-0 si in centrul containerului pe orizontala
+                span.className = 'absolute top-0 left-0 w-full h-full flex justify-center origin-center';
+                // Rotim containerul interior (care are width/height 100%)
+                span.style.transform = `rotate(${i * degree}deg)`;
+                circularTextContainer.appendChild(span);
+            });
+        }
+
+        // Logica pentru animatia cardurilor (Flip)
         const overlay = document.getElementById('overlay');
         let isAnimating = false;
 
