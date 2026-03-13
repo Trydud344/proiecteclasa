@@ -113,6 +113,14 @@
             pointer-events: auto;
         }
 
+        /* Ajustari speciale pentru efectul de zoom pe mobil */
+        @media (max-width: 768px) {
+            .project-card.active .close-btn {
+                top: 48px;
+                right: 48px;
+            }
+        }
+
         .ppt-frame {
             width: 100%;
             height: 100%;
@@ -160,7 +168,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="projectGrid">
             
             <!-- Project 1 -->
-            <div class="glass-card project-card rounded-[32px] p-5 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
                 <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -176,7 +184,7 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-4 pt-14 md:p-2 pb-10 md:pb-2">
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-[32px] pt-[64px] pb-[32px] md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
                             <!-- Icon Fizica mic -->
@@ -197,7 +205,7 @@
             </div>
 
             <!-- Project 2 -->
-            <div class="glass-card project-card rounded-[32px] p-5 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
                 <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -213,7 +221,7 @@
                 </div>
 
                 <!-- Expanded Content -->
-                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden p-4 pt-14 md:p-2 pb-10 md:pb-2">
+                <div class="content-hidden w-full h-full flex flex-col md:flex-row gap-6 md:gap-8 overflow-y-auto md:overflow-hidden px-[32px] pt-[64px] pb-[32px] md:p-0">
                     <div class="md:w-1/3 flex flex-col justify-center">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3">
                             <!-- Icon Chimie mic -->
@@ -277,9 +285,11 @@
                 
                 card.style.top = '50%';
                 card.style.left = '50%';
-                card.style.width = isMobile ? '100vw' : '90vw';
-                card.style.height = isMobile ? '100dvh' : '85vh';
-                card.style.borderRadius = isMobile ? '0px' : '32px';
+                
+                // Efectul de "Zoom In" - Box-ul depaseste ecranul cu 32px pe toate partile pentru a ascunde perfect colturile rotunjite
+                card.style.width = isMobile ? 'calc(100vw + 64px)' : '90vw';
+                card.style.height = isMobile ? 'calc(100dvh + 64px)' : '85vh';
+                
                 card.style.transform = 'translate(-50%, -50%)';
                 
                 overlay.classList.add('active');
@@ -313,7 +323,6 @@
                             card.style.margin = '';
                             card.style.transform = '';
                             card.style.zIndex = '';
-                            card.style.borderRadius = '';
                             
                             if (placeholder.parentNode) {
                                 placeholder.parentNode.removeChild(placeholder);
