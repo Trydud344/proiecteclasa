@@ -189,38 +189,6 @@
             overflow: hidden;
         }
 
-        /* Mobile expanded content layout fixes */
-        @media (max-width: 768px) {
-            .project-card.active .content-hidden {
-                overflow-y: auto !important;
-                overflow-x: hidden !important;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            /* Force the PPT iframe wrapper to use aspect ratio on mobile instead of flex-1 */
-            .project-card.active .ppt-aspect-mobile {
-                flex: none !important;
-                width: 100% !important;
-                aspect-ratio: 16 / 9;
-                min-height: 0 !important;
-            }
-            
-            /* For 4:3 aspect ratio PPTs */
-            .project-card.active .ppt-aspect-mobile-4-3 {
-                flex: none !important;
-                width: 100% !important;
-                aspect-ratio: 3 / 2;
-                min-height: 0 !important;
-            }
-            
-            /* The outer iframe wrapper on mobile should not stretch */
-            .project-card.active .iframe-outer-mobile {
-                flex: none !important;
-                width: 100% !important;
-                height: auto !important;
-            }
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
@@ -244,7 +212,7 @@
 
     <header class="max-w-6xl mx-auto text-center mb-16 md:mb-20 mt-6 md:mt-10">
         <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400">
-            Colegiul Național „Unirea" • Clasa 11 D
+            Colegiul Național „Unirea” • Clasa 11 D
         </div>
         
         <h1 class="text-4xl md:text-7xl font-light tracking-tighter mb-4">
@@ -272,13 +240,14 @@
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Băieților</p>
                 </div>
 
-                <!-- Expanded Content -->
+                <!-- Expanded Content (Fixat la dimensiunea tinta pentru a preveni text reflow-ul) -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <!-- Icon Fizica mic -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Acest proiect explorează figurile emblematice ale fizicii și modul în care descoperirile lor au redefinit înțelegerea noastră asupra timpului și spațiului.
                         </p>
@@ -287,8 +256,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -309,6 +278,7 @@
                 <!-- Initial State -->
                 <div class="placeholder-ui text-center">
                     <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <!-- Icon Cercetare (Microscop) -->
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
                     </div>
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Femeile de știință care au schimbat lumea</h3>
@@ -317,11 +287,12 @@
 
                 <!-- Expanded Content -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <!-- Icon Cercetare mic (Microscop) -->
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Acest proiect celebrează contribuțiile esențiale ale femeilor pionier în știință, de la descoperirea radioactivității la fundamentarea structurii ADN-ului.
                         </p>
@@ -330,8 +301,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -353,6 +324,7 @@
         </h2>
         <p class="text-zinc-500 text-base md:text-lg font-light italic mb-12">Aplicații practice ale undelor electromagnetice</p>
 
+        <!-- Grila perfect aliniata la restul site-ului -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             
             <!-- 1. Radio -->
@@ -367,6 +339,7 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">1) Radio</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
                 </div>
+                <!-- Continut minimal centrat statice la expasiune -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
                     <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
@@ -385,13 +358,13 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">2) TV</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
                 </div>
-                <!-- Expanded Content -->
+                <!-- Expanded Content (Proiect complet) -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">2) TV</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">2) TV</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Transmisia semnalului TV, unde electromagnetice și procesul de funcționare.
                         </p>
@@ -400,8 +373,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQQgD8O2-QxFS6xyf4SSBN6JARdjOOqvhJnix2FApO4W280?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -425,13 +398,13 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">3) Detectoare de metale</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Infraroșu & Reguli</p>
                 </div>
-                <!-- Expanded Content -->
+                <!-- Expanded Content (Proiect complet) -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">3) Detectoare de metale</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">3) Detectoare de metale</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Principiul de funcționare bazat pe inducție electromagnetică, reguli de utilizare și aplicații practice ale detectoarelor de metale.
                         </p>
@@ -440,8 +413,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile-4-3 flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR_xTPL5R9DQ5WZzZAMwNr3ATBBhnBsZgzITFiuyZd6sQY?wdAr=1.5" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -465,13 +438,13 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">4) Cuptorul cu microunde</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Microunde & Aplicații</p>
                 </div>
-                <!-- Expanded Content -->
+                <!-- Expanded Content (Proiect complet) -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">4) Cuptorul cu microunde</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">4) Cuptorul cu microunde</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Principiul fizic al microundelor, funcționarea cuptorului și alte aplicații ale acestor unde electromagnetice.
                         </p>
@@ -480,8 +453,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR-nQz6qI06RYDtUlXJkzHzASzUjBIsPVqOCRvMV5eOfEM?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -505,13 +478,13 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">5) Telefonul</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">Comunicații mobile</p>
                 </div>
-                <!-- Expanded Content -->
+                <!-- Expanded Content (Proiect complet) -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
+                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                         <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                         </div>
-                        <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">5) Telefonul</h2>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">5) Telefonul</h2>
                         <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed hidden sm:block">
                             Fizica din spatele comunicațiilor mobile, rețelele celulare și modul în care vocea și datele sunt transmise prin unde electromagnetice.
                         </p>
@@ -520,8 +493,8 @@
                         </div>
                     </div>
                     <!-- Wrapper iframe -->
-                    <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
+                    <div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
+                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
                             <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQSAV8VjmSXCRoXw9-xQJNtxAe2qnvqDbw7qXlE_bpknGuc?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
                         </div>
                         <!-- Hint mobil -->
@@ -545,6 +518,7 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">6) Radio locație</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">& Radio astronomie</p>
                 </div>
+                <!-- Continut minimal centrat statice la expasiune -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
                     <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
@@ -563,6 +537,7 @@
                     <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">7) Măsuri de protecție</h3>
                     <p class="text-zinc-500 text-sm md:text-base mt-2">A persoanelor și a mediului</p>
                 </div>
+                <!-- Continut minimal centrat statice la expasiune -->
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
                     <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
                     <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
@@ -572,7 +547,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer cu linie pe toata latimea si elemente centrate vertical -->
     <footer class="w-full border-t border-zinc-900 mt-24 md:mt-32">
         <div class="relative max-w-6xl mx-auto py-8 md:py-10 px-4 flex items-center justify-center">
             
@@ -580,8 +555,10 @@
                 2026 • Colegiul Național UNIREA • Clasa 11 D
             </p>
 
+            <!-- Spinning Text Animation -->
             <div class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 mt-2 md:mt-3 w-20 h-20 md:w-24 md:h-24 text-zinc-500 hover:text-white transition-colors duration-300 pointer-events-none md:pointer-events-auto cursor-default">
                 <div id="circular-text" class="relative w-full h-full animate-[spin_12s_linear_infinite] text-[8px] md:text-[9.5px] font-bold">
+                    <!-- Javascript va injecta literele aici -->
                 </div>
             </div>
             
@@ -599,8 +576,11 @@
             
             chars.forEach((char, i) => {
                 const span = document.createElement('span');
+                // Adaugam spatiu real (non-breaking) daca e gol, altfel caracterul
                 span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                // Clasa pozitioneaza fiecare caracter la top-0 si in centrul containerului pe orizontala
                 span.className = 'absolute top-0 left-0 w-full h-full flex justify-center origin-center';
+                // Rotim containerul interior (care are width/height 100%)
                 span.style.transform = `rotate(${i * degree}deg)`;
                 circularTextContainer.appendChild(span);
             });
@@ -609,24 +589,21 @@
         // Logica pentru animatia cardurilor (Flip)
         const overlay = document.getElementById('overlay');
         let isAnimating = false;
-        let savedScrollY = 0;
 
         function expandCard(card) {
             if (isAnimating || card.classList.contains('active')) return;
             
             isAnimating = true;
             
-            const isMobile = window.innerWidth <= 768;
-            
-            // Save scroll position BEFORE locking
-            savedScrollY = window.scrollY;
-            
+            // TRUC MAGIC: Blocăm exact lățimea curentă a elementului de "placeholder"
+            // Astfel, pe masură ce cardul se extinde, textul NU mai are unde să își schimbe forma (wrap) 
             const ui = card.querySelector('.placeholder-ui');
             if (ui) {
                 ui.style.width = ui.getBoundingClientRect().width + 'px';
             }
             
             const rect = card.getBoundingClientRect();
+            const isMobile = window.innerWidth <= 768;
             
             const placeholder = document.createElement('div');
             placeholder.className = 'placeholder-ghost';
@@ -637,11 +614,13 @@
             
             card._placeholder = placeholder;
             
-            // FLIP - Setup
+            // FLIP - Setup (Fără tranziție pentru a evita săriturile)
             card.style.transition = 'none';
             card.style.position = 'fixed';
             card.style.margin = '0';
             card.style.zIndex = '50';
+
+            // Pozitia initiala (comuna pentru ambele moduri)
             card.style.top = rect.top + 'px';
             card.style.left = rect.left + 'px';
             card.style.width = rect.width + 'px';
@@ -654,9 +633,9 @@
                 card.style.transform = 'translate(0, 0)';
             }
             
-            card.getBoundingClientRect(); // Force reflow
+            card.getBoundingClientRect(); // Fortam reflow-ul
             
-            // FLIP - Play
+            // FLIP - Play (Reactivam tranziția)
             card.style.transition = '';
             
             requestAnimationFrame(() => {
@@ -669,23 +648,16 @@
                     card.style.height = '100dvh';
                     card.style.borderRadius = '0px';
                     card.style.transform = 'none';
-                    
-                    // Lock body scroll on mobile using fixed position to prevent forced scroll
-                    document.body.style.position = 'fixed';
-                    document.body.style.top = `-${savedScrollY}px`;
-                    document.body.style.left = '0';
-                    document.body.style.right = '0';
-                    document.body.style.overflow = 'hidden';
                 } else {
                     card.style.top = '50%';
                     card.style.left = '50%';
                     card.style.width = '90vw';
                     card.style.height = '85vh';
                     card.style.transform = 'translate(-50%, -50%)';
-                    document.body.style.overflow = 'hidden';
                 }
                 
                 overlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
             });
 
             setTimeout(() => { isAnimating = false; }, 600);
@@ -698,28 +670,18 @@
 
             isAnimating = true;
             
-            const isMobile = window.innerWidth <= 768;
-            
-            // Restore body scroll BEFORE animation so position calculations work
-            if (isMobile) {
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.left = '';
-                document.body.style.right = '';
-                document.body.style.overflow = '';
-                window.scrollTo(0, savedScrollY);
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-            
+            // Permitem scroll-ul imediat ce apasam X, astfel incat cutia sa culiseze odata cu pagina
             overlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; 
 
             activeCards.forEach(card => {
                 card.classList.remove('active');
                 
                 const placeholder = card._placeholder;
+                const isMobile = window.innerWidth <= 768;
                 
                 if (placeholder) {
+                    // Schimbam din Fixed (fata de ecran) in Absolute (fata de document)
                     card.style.transition = 'none';
 
                     const currentRect = card.getBoundingClientRect();
@@ -727,7 +689,7 @@
                     const scrollX = window.scrollX;
 
                     card.style.position = 'absolute';
-                    card.style.transform = 'none';
+                    card.style.transform = 'none'; // Am calculat deja pozitia vizuala exacta in px
                     card.style.top = (currentRect.top + scrollY) + 'px';
                     card.style.left = (currentRect.left + scrollX) + 'px';
                     card.style.width = currentRect.width + 'px';
@@ -735,10 +697,12 @@
 
                     card.getBoundingClientRect(); // Reflow
 
+                    // Pornim tranzitia
                     card.style.transition = '';
 
                     const targetRect = placeholder.getBoundingClientRect();
                     
+                    // Directia spre grila, tinand cont de scroll (pentru a fi blocata pe document, nu pe ecran)
                     card.style.top = (targetRect.top + scrollY) + 'px';
                     card.style.left = (targetRect.left + scrollX) + 'px';
                     card.style.width = targetRect.width + 'px';
@@ -760,6 +724,7 @@
                             card.style.zIndex = '';
                             card.style.borderRadius = '';
                             
+                            // Eliberam restrictia de latime dupa terminarea animatiei
                             const ui = card.querySelector('.placeholder-ui');
                             if (ui) {
                                 ui.style.width = '';
@@ -781,7 +746,7 @@
             if (e.key === 'Escape') closeAllCards();
         });
 
-        // Glow effect (desktop only)
+        // Logica pentru efectul de glow la cursor (doar daca nu suntem pe mobil)
         if (window.matchMedia("(pointer: fine)").matches) {
             const updateCursor = ({ x, y }) => {
                 document.documentElement.style.setProperty('--x', x);
