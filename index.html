@@ -1,193 +1,193 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>160 Ani de Știință | Clasa 11 D - CNU</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>160 Ani de Știință | Clasa 11 D - CNU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-:root {
---amoled-black: #000000;
---surface-grey: #121212;
---border-grey: #2a2a2a;
---text-dim: #a0a0a0;
---x: 50vw;
---y: 50vh;
-}
+        :root {
+            --amoled-black: #000000;
+            --surface-grey: #121212;
+            --border-grey: #2a2a2a;
+            --text-dim: #a0a0a0;
+            --x: 50vw;
+            --y: 50vh;
+        }
 
-body {
-background-color: var(--amoled-black);
-color: white;
-font-family: 'Inter', sans-serif;
-overflow-x: hidden;
-}
+        body {
+            background-color: var(--amoled-black);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-/* Efectul de Fade Gradual in partea de sus */
-.top-fade {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 120px;
-background: linear-gradient(to bottom, var(--amoled-black) 20%, transparent 100%);
-z-index: 30;
-pointer-events: none;
-}
+        /* Efectul de Fade Gradual in partea de sus */
+        .top-fade {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to bottom, var(--amoled-black) 20%, transparent 100%);
+            z-index: 30;
+            pointer-events: none;
+        }
 
-.glass-card {
-background: var(--surface-grey);
-border: 1px solid var(--border-grey);
-box-sizing: border-box; 
-transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        .glass-card {
+            background: var(--surface-grey);
+            border: 1px solid var(--border-grey);
+            box-sizing: border-box; 
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-.project-card {
-height: 300px;
-cursor: pointer;
-position: relative;
---active: 0;
-}
+        .project-card {
+            height: 300px;
+            cursor: pointer;
+            position: relative;
+            --active: 0;
+        }
 
-/* Activam efectul la hover */
-.project-card:not(.active):hover {
---active: 1;
-}
+        /* Activam efectul la hover */
+        .project-card:not(.active):hover {
+            --active: 1;
+        }
 
-/* Efectul luminos de pe marginea (border) cutiei */
-.project-card::before {
-content: "";
-position: absolute;
-inset: 0;
-border-radius: inherit;
-padding: 1px;
-background: radial-gradient(
-circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-rgba(255, 255, 255, 0.4),
-transparent 250px
-);
-background-attachment: fixed;
--webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
--webkit-mask-composite: xor;
-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-mask-composite: exclude;
-pointer-events: none;
-opacity: var(--active, 0);
-transition: opacity 0.2s ease;
-z-index: 20;
-}
+        /* Efectul luminos de pe marginea (border) cutiei */
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: radial-gradient(
+                circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+                rgba(255, 255, 255, 0.4),
+                transparent 250px
+            );
+            background-attachment: fixed;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: var(--active, 0);
+            transition: opacity 0.2s ease;
+            z-index: 20;
+        }
 
-/* Efectul luminos din interiorul (background) cutiei */
-.project-card::after {
-content: "";
-position: absolute;
-inset: 0;
-border-radius: inherit;
-background: radial-gradient(
-circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-rgba(255, 255, 255, 0.05),
-transparent 250px
-);
-background-attachment: fixed;
-opacity: var(--active, 0);
-transition: opacity 0.2s ease;
-pointer-events: none;
-z-index: 10;
-}
+        /* Efectul luminos din interiorul (background) cutiei */
+        .project-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+                rgba(255, 255, 255, 0.05),
+                transparent 250px
+            );
+            background-attachment: fixed;
+            opacity: var(--active, 0);
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
 
-/* Dezactivam glow-ul cand cutia e marita pe tot ecranul */
-.project-card.active::before,
-.project-card.active::after {
-display: none !important;
-}
+        /* Dezactivam glow-ul cand cutia e marita pe tot ecranul */
+        .project-card.active::before,
+        .project-card.active::after {
+            display: none !important;
+        }
 
-/* Dezactivam glow-ul complet pe dispozitivele mobile */
-@media (max-width: 768px) {
-.project-card::before,
-.project-card::after {
-display: none !important;
-}
-}
+        /* Dezactivam glow-ul complet pe dispozitivele mobile */
+        @media (max-width: 768px) {
+            .project-card::before,
+            .project-card::after {
+                display: none !important;
+            }
+        }
 
-.project-card.active {
-cursor: default;
-}
+        .project-card.active {
+            cursor: default;
+        }
 
-.overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.85);
-backdrop-filter: blur(8px);
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.4s ease;
-z-index: 40;
-}
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            z-index: 40;
+        }
 
-.overlay.active {
-opacity: 1;
-pointer-events: auto;
-}
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-.placeholder-ui {
-transition: opacity 0.3s ease;
-width: 100%;
-}
+        .placeholder-ui {
+            transition: opacity 0.3s ease;
+            width: 100%;
+        }
 
-.project-card.active .placeholder-ui {
-opacity: 0;
-position: absolute; 
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-pointer-events: none;
-}
+        .project-card.active .placeholder-ui {
+            opacity: 0;
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
 
-/* Forțăm ascunderea pentru a nu strica flexbox-ul cutiilor minimizate */
-.content-hidden {
-display: none !important;
-opacity: 0;
-transition: opacity 0.5s ease 0.3s; 
-}
+        /* Forțăm ascunderea pentru a nu strica flexbox-ul cutiilor minimizate */
+        .content-hidden {
+            display: none !important;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.3s; 
+        }
 
-.project-card.active .content-hidden {
-display: flex !important;
-opacity: 1;
-}
+        .project-card.active .content-hidden {
+            display: flex !important;
+            opacity: 1;
+        }
 
-.close-btn {
-position: absolute;
-top: 20px;
-right: 20px;
-padding: 8px;
-border-radius: 50%;
-background: rgba(255, 255, 255, 0.1);
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s ease 0.3s;
-z-index: 60;
-display: flex;
-align-items: center;
-justify-content: center;
-}
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease 0.3s;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.project-card.active .close-btn {
-opacity: 1;
-pointer-events: auto;
-}
+        .project-card.active .close-btn {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-.ppt-frame {
-background: #050505;
-border-radius: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-}
+        .ppt-frame {
+            background: #050505;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
         /* Mobile expanded content layout fixes */
         @media (max-width: 768px) {
@@ -221,452 +221,420 @@ overflow: hidden;
             }
         }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-width: 6px;
-}
-::-webkit-scrollbar-track {
-background: var(--amoled-black);
-}
-::-webkit-scrollbar-thumb {
-background: var(--border-grey);
-border-radius: 10px;
-}
-</style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--amoled-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-grey);
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body class="p-4 md:p-12 pb-0 md:pb-0">
 
-<div class="top-fade"></div>
+    <div class="top-fade"></div>
 
-<div id="overlay" class="overlay" onclick="closeAllCards()"></div>
+    <div id="overlay" class="overlay" onclick="closeAllCards()"></div>
 
-<header class="max-w-6xl mx-auto text-center mb-16 md:mb-20 mt-6 md:mt-10">
-<div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400">
-            Colegiul Național „Unirea” • Clasa 11 D
+    <header class="max-w-6xl mx-auto text-center mb-16 md:mb-20 mt-6 md:mt-10">
+        <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400">
             Colegiul Național „Unirea" • Clasa 11 D
-</div>
+        </div>
+        
+        <h1 class="text-4xl md:text-7xl font-light tracking-tighter mb-4">
+            160 Ani de <span class="font-semibold">Știință</span>
+        </h1>
+        <p class="text-zinc-500 text-base md:text-lg font-light italic">Arhiva digitală de proiecte și cercetări științifice</p>
+    </header>
 
-<h1 class="text-4xl md:text-7xl font-light tracking-tighter mb-4">
-160 Ani de <span class="font-semibold">Știință</span>
-</h1>
-<p class="text-zinc-500 text-base md:text-lg font-light italic">Arhiva digitală de proiecte și cercetări științifice</p>
-</header>
-
-<main class="max-w-6xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="projectGrid">
-
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M12 9c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M3 12c0-1.657 4.03-3 9-3s9 1.343 9 3-4.03 3-9 3-9-1.343-9-3z"></path></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Oamenii de știință care au schimbat lumea</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Băieților</p>
-</div>
+    <main class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8" id="projectGrid">
+            
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M12 9c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path><path d="M3 12c0-1.657 4.03-3 9-3s9 1.343 9 3-4.03 3-9 3-9-1.343-9-3z"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Oamenii de știință care au schimbat lumea</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Băieților</p>
+                </div>
 
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 21c-4.97 0-9-1.343-9-3s4.03-3 9-3 9 1.343 9 3-4.03 3-9 3z"></path></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Oamenii de știință care au schimbat lumea</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Acest proiect explorează figurile emblematice ale fizicii și modul în care descoperirile lor au redefinit înțelegerea noastră asupra timpului și spațiului.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Acest proiect explorează figurile emblematice ale fizicii și modul în care descoperirile lor au redefinit înțelegerea noastră asupra timpului și spațiului.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Imagination is more important than knowledge."</p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQTuoLGfRV6aT4uy2AXFL3f0ARq_OC9qV-5__inR-fqBuJU?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Femeile de știință care au schimbat lumea</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Fetelor</p>
-</div>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">Femeile de știință care au schimbat lumea</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Echipa Fetelor</p>
+                </div>
 
-<div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink">
+                <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">Femeile de știință care au schimbat lumea</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Acest proiect celebrează contribuțiile esențiale ale femeilor pionier în știință, de la descoperirea radioactivității la fundamentarea structurii ADN-ului.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Nimic în viață nu este de temut, trebuie doar înțeles." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Marie Curie</span></p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Acest proiect celebrează contribuțiile esențiale ale femeilor pionier în știință, de la descoperirea radioactivității la fundamentarea structurii ADN-ului.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Nimic în viață nu este de temut, trebuie doar înțeles." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Marie Curie</span></p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQRAyQCMnA6zRICvXBnJYBplAa7AO9WVV-7C6wKU1KlMdyw?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</div>
-</main>
+        </div>
+    </main>
 
-<section class="max-w-6xl mx-auto text-center mt-32 mb-10 md:mb-16">
-<h2 class="text-3xl md:text-6xl font-light tracking-tighter mb-4">
-<span class="font-semibold">Fizica</span> din spatele obiectelor obișnuite
-</h2>
-<p class="text-zinc-500 text-base md:text-lg font-light italic mb-12">Aplicații practice ale undelor electromagnetice</p>
+    <section class="max-w-6xl mx-auto text-center mt-32 mb-10 md:mb-16">
+        <h2 class="text-3xl md:text-6xl font-light tracking-tighter mb-4">
+            <span class="font-semibold">Fizica</span> din spatele obiectelor obișnuite
+        </h2>
+        <p class="text-zinc-500 text-base md:text-lg font-light italic mb-12">Aplicații practice ale undelor electromagnetice</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">1) Radio</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
-</div>
+            
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">1) Radio</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
-<h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
-<p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
-</div>
-</div>
+                    <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">2) TV</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">2) TV</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Unde & Aparat</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">2) TV</h2>
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">2) TV</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Transmisia semnalului TV, unde electromagnetice și procesul de funcționare.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Televiziunea va aduce întreaga lume în casele oamenilor obișnuiți." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- David Sarnoff</span></p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Transmisia semnalului TV, unde electromagnetice și procesul de funcționare.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Televiziunea va aduce întreaga lume în casele oamenilor obișnuiți." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- David Sarnoff</span></p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQQgD8O2-QxFS6xyf4SSBN6JARdjOOqvhJnix2FApO4W280?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQQgD8O2-QxFS6xyf4SSBN6JARdjOOqvhJnix2FApO4W280?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">3) Detectoare de metale</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Infraroșu & Reguli</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">3) Detectoare de metale</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Infraroșu & Reguli</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">3) Detectoare de metale</h2>
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">3) Detectoare de metale</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Principiul de funcționare bazat pe inducție electromagnetică, reguli de utilizare și aplicații practice ale detectoarelor de metale.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Nimic nu este prea minunat pentru a fi adevărat, dacă este în concordanță cu legile naturii." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Michael Faraday</span></p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Principiul de funcționare bazat pe inducție electromagnetică, reguli de utilizare și aplicații practice ale detectoarelor de metale.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Nimic nu este prea minunat pentru a fi adevărat, dacă este în concordanță cu legile naturii." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Michael Faraday</span></p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile-4-3 flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR_xTPL5R9DQ5WZzZAMwNr3ATBBhnBsZgzITFiuyZd6sQY?wdAr=1.5" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR_xTPL5R9DQ5WZzZAMwNr3ATBBhnBsZgzITFiuyZd6sQY?wdAr=1.5" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">4) Cuptorul cu microunde</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Microunde & Aplicații</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">4) Cuptorul cu microunde</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Microunde & Aplicații</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">4) Cuptorul cu microunde</h2>
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M18 10v4"/><path d="M2 10h12"/><path d="M2 14h12"/></svg>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">4) Cuptorul cu microunde</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Principiul fizic al microundelor, funcționarea cuptorului și alte aplicații ale acestor unde electromagnetice.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Invenția este doar un accident care a întâlnit o minte pregătită." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Albert Szent-Györgyi</span></p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Principiul fizic al microundelor, funcționarea cuptorului și alte aplicații ale acestor unde electromagnetice.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Invenția este doar un accident care a întâlnit o minte pregătită." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Albert Szent-Györgyi</span></p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR-nQz6qI06RYDtUlXJkzHzASzUjBIsPVqOCRvMV5eOfEM?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQR-nQz6qI06RYDtUlXJkzHzASzUjBIsPVqOCRvMV5eOfEM?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">5) Telefonul</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">Comunicații mobile</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">5) Telefonul</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">Comunicații mobile</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col md:flex-row gap-4 md:gap-8 overflow-hidden p-6 pt-16 md:p-10 text-left">
-                    <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-[85%] md:w-auto flex-shrink-0 md:flex-shrink items-start">
                     <div class="md:w-1/3 flex flex-col justify-start md:justify-center w-full md:w-auto flex-shrink-0 md:flex-shrink items-start">
-<div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-</div>
-                        <h2 class="text-2xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">5) Telefonul</h2>
+                        <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center mb-3 flex-shrink-0">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a0a0a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        </div>
                         <h2 class="text-xl md:text-3xl font-semibold mb-2 md:mb-4 leading-tight">5) Telefonul</h2>
-<p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
-Fizica din spatele comunicațiilor mobile, rețelele celulare și modul în care vocea și datele sunt transmise prin unde electromagnetice.
-</p>
-<div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
-<p class="text-xs md:text-sm text-zinc-400 italic">"Nu mă îndoiesc că în viitor firele telefonice vor uni fiecare casă și birou." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Alexander Graham Bell (1878)</span></p>
-</div>
-</div>
-<div class="w-full md:w-2/3 flex flex-col md:block flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
-                        <div class="ppt-frame w-full flex-1 min-h-0 md:!h-full md:flex-none">
+                        <p class="text-zinc-400 text-xs md:text-base mb-3 md:mb-6 leading-relaxed">
+                            Fizica din spatele comunicațiilor mobile, rețelele celulare și modul în care vocea și datele sunt transmise prin unde electromagnetice.
+                        </p>
+                        <div class="p-3 md:p-4 bg-white/5 rounded-xl md:rounded-2xl border border-white/10">
+                            <p class="text-xs md:text-sm text-zinc-400 italic">"Nu mă îndoiesc că în viitor firele telefonice vor uni fiecare casă și birou." <br><span class="text-[10px] md:text-xs text-zinc-500 mt-1 inline-block">- Alexander Graham Bell (1878)</span></p>
+                        </div>
+                    </div>
                     <div class="w-full md:w-2/3 flex flex-col md:block iframe-outer-mobile flex-1 min-h-0 mt-2 md:mt-0 md:flex-none md:flex-shrink-0 md:h-full">
                         <div class="ppt-frame w-full ppt-aspect-mobile flex-1 min-h-0 md:!h-full md:flex-none">
-<iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQSAV8VjmSXCRoXw9-xQJNtxAe2qnvqDbw7qXlE_bpknGuc?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
-</div>
-<div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-<span>Glisează orizontal pentru slide-uri</span>
-</div>
-</div>
-</div>
-</div>
+                            <iframe src="https://1drv.ms/p/c/ef78d9a2948c4fe3/IQSAV8VjmSXCRoXw9-xQJNtxAe2qnvqDbw7qXlE_bpknGuc?wdAr=1.7777777777777777" class="w-full h-full" frameborder="0" title="PowerPoint Viewer"></iframe>
+                        </div>
+                        <div class="flex md:hidden items-center justify-center gap-2 mt-3 text-zinc-500 text-[10px] uppercase tracking-widest font-semibold animate-pulse flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8l4 4-4 4"/><path d="M7 8l-4 4 4 4"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                            <span>Glisează orizontal pentru slide-uri</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a10 10 0 0 1 16 0"/><path d="M12 10v10"/><path d="M8 20h8"/><circle cx="12" cy="10" r="2"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">6) Radio locație</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">& Radio astronomie</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a10 10 0 0 1 16 0"/><path d="M12 10v10"/><path d="M8 20h8"/><circle cx="12" cy="10" r="2"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">6) Radio locație</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">& Radio astronomie</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
-<h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
-<p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
-</div>
-</div>
+                    <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
 
-<div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
-<button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-</button>
-<div class="placeholder-ui text-center">
-<div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-</div>
-<h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">7) Măsuri de protecție</h3>
-<p class="text-zinc-500 text-sm md:text-base mt-2">A persoanelor și a mediului</p>
-</div>
+            <div class="glass-card project-card rounded-[32px] p-4 md:p-8 flex flex-col justify-center items-center group overflow-hidden" onclick="expandCard(this)">
+                <button class="close-btn" onclick="event.stopPropagation(); closeAllCards()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="placeholder-ui text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform flex-shrink-0">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-medium mt-2 md:mt-0">7) Măsuri de protecție</h3>
+                    <p class="text-zinc-500 text-sm md:text-base mt-2">A persoanelor și a mediului</p>
+                </div>
                 <div class="content-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100dvh] md:w-[90vw] md:h-[85vh] flex-col items-center justify-center p-8 md:p-16 overflow-hidden text-center">
-<h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
-<p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
-</div>
-</div>
+                    <h2 class="text-5xl md:text-7xl font-light text-white tracking-tighter mb-4">Coming <span class="font-semibold">soon</span>...</h2>
+                    <p class="text-zinc-500 text-lg md:text-xl max-w-2xl leading-relaxed">Informațiile pentru acest capitol sunt în lucru.</p>
+                </div>
+            </div>
 
-</div>
-</section>
+        </div>
+    </section>
 
     <footer class="w-full border-t border-zinc-900 mt-24 md:mt-32">
-<div class="relative max-w-6xl mx-auto py-8 md:py-10 px-4 flex items-center justify-center">
-
-<p class="text-center text-zinc-600 text-xs tracking-widest uppercase font-medium z-10">
-2026 • Colegiul Național UNIREA • Clasa 11 D
-</p>
+        <div class="relative max-w-6xl mx-auto py-8 md:py-10 px-4 flex items-center justify-center">
+            
+            <p class="text-center text-zinc-600 text-xs tracking-widest uppercase font-medium z-10">
+                2026 • Colegiul Național UNIREA • Clasa 11 D
+            </p>
 
             <div class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 mt-2 md:mt-3 w-20 h-20 md:w-24 md:h-24 text-zinc-500 hover:text-white transition-colors duration-300 pointer-events-none md:pointer-events-auto cursor-default">
-<div id="circular-text" class="relative w-full h-full animate-[spin_12s_linear_infinite] text-[8px] md:text-[9.5px] font-bold">
-                    </div>
-</div>
+                <div id="circular-text" class="relative w-full h-full animate-[spin_12s_linear_infinite] text-[8px] md:text-[9.5px] font-bold">
+                </div>
+            </div>
+            
+        </div>
+    </footer>
 
-</div>
-</footer>
+    <script>
+        // Logica pentru textul rotativ
+        const textStr = "MADE BY IVASCU ♥ MADE BY IVASCU ♥ ";
+        const circularTextContainer = document.getElementById('circular-text');
+        
+        if (circularTextContainer) {
+            const chars = textStr.split('');
+            const degree = 360 / chars.length;
+            
+            chars.forEach((char, i) => {
+                const span = document.createElement('span');
+                span.innerHTML = char === ' ' ? '&nbsp;' : char;
+                span.className = 'absolute top-0 left-0 w-full h-full flex justify-center origin-center';
+                span.style.transform = `rotate(${i * degree}deg)`;
+                circularTextContainer.appendChild(span);
+            });
+        }
 
-<script>
-// Logica pentru textul rotativ
-const textStr = "MADE BY IVASCU ♥ MADE BY IVASCU ♥ ";
-const circularTextContainer = document.getElementById('circular-text');
-
-if (circularTextContainer) {
-const chars = textStr.split('');
-const degree = 360 / chars.length;
-
-chars.forEach((char, i) => {
-const span = document.createElement('span');
-                // Adaugam spatiu real (non-breaking) daca e gol, altfel caracterul
-span.innerHTML = char === ' ' ? '&nbsp;' : char;
-                // Clasa pozitioneaza fiecare caracter la top-0 si in centrul containerului pe orizontala
-span.className = 'absolute top-0 left-0 w-full h-full flex justify-center origin-center';
-                // Rotim containerul interior (care are width/height 100%)
-span.style.transform = `rotate(${i * degree}deg)`;
-circularTextContainer.appendChild(span);
-});
-}
-
-// Logica pentru animatia cardurilor (Flip)
-const overlay = document.getElementById('overlay');
-let isAnimating = false;
+        // Logica pentru animatia cardurilor (Flip)
+        const overlay = document.getElementById('overlay');
+        let isAnimating = false;
         let savedScrollY = 0;
 
-function expandCard(card) {
-if (isAnimating || card.classList.contains('active')) return;
-
-isAnimating = true;
-
-            // TRUC MAGIC: Blocăm exact lățimea curentă a elementului de "placeholder"
-            // Astfel, pe masură ce cardul se extinde, textul NU mai are unde să își schimbe forma (wrap) 
+        function expandCard(card) {
+            if (isAnimating || card.classList.contains('active')) return;
+            
+            isAnimating = true;
+            
             const isMobile = window.innerWidth <= 768;
             
             // Save scroll position BEFORE locking
             savedScrollY = window.scrollY;
             
-const ui = card.querySelector('.placeholder-ui');
-if (ui) {
-ui.style.width = ui.getBoundingClientRect().width + 'px';
-}
-
-const rect = card.getBoundingClientRect();
-
-const placeholder = document.createElement('div');
-placeholder.className = 'placeholder-ghost';
-placeholder.style.width = rect.width + 'px';
-placeholder.style.height = rect.height + 'px';
-placeholder.style.flexShrink = '0';
-card.parentNode.insertBefore(placeholder, card);
-
-card._placeholder = placeholder;
-
+            const ui = card.querySelector('.placeholder-ui');
+            if (ui) {
+                ui.style.width = ui.getBoundingClientRect().width + 'px';
+            }
+            
+            const rect = card.getBoundingClientRect();
+            
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder-ghost';
+            placeholder.style.width = rect.width + 'px';
+            placeholder.style.height = rect.height + 'px';
+            placeholder.style.flexShrink = '0';
+            card.parentNode.insertBefore(placeholder, card);
+            
+            card._placeholder = placeholder;
+            
             // FLIP - Setup
-card.style.transition = 'none';
-card.style.position = 'fixed';
-card.style.margin = '0';
-card.style.zIndex = '50';
+            card.style.transition = 'none';
+            card.style.position = 'fixed';
+            card.style.margin = '0';
+            card.style.zIndex = '50';
+            card.style.top = rect.top + 'px';
+            card.style.left = rect.left + 'px';
+            card.style.width = rect.width + 'px';
+            card.style.height = rect.height + 'px';
 
-            // Pozitia initiala (comuna pentru ambele moduri)
-card.style.top = rect.top + 'px';
-card.style.left = rect.left + 'px';
-card.style.width = rect.width + 'px';
-card.style.height = rect.height + 'px';
-
-if (isMobile) {
-card.style.transform = 'none';
-card.style.borderRadius = '32px';
-} else {
-card.style.transform = 'translate(0, 0)';
-}
-
+            if (isMobile) {
+                card.style.transform = 'none';
+                card.style.borderRadius = '32px';
+            } else {
+                card.style.transform = 'translate(0, 0)';
+            }
+            
             card.getBoundingClientRect(); // Force reflow
-
+            
             // FLIP - Play
-card.style.transition = '';
-
-requestAnimationFrame(() => {
-card.classList.add('active');
-
-if (isMobile) {
-card.style.top = '0px';
-card.style.left = '0px';
-card.style.width = '100vw';
-card.style.height = '100dvh';
-card.style.borderRadius = '0px';
-card.style.transform = 'none';
+            card.style.transition = '';
+            
+            requestAnimationFrame(() => {
+                card.classList.add('active');
+                
+                if (isMobile) {
+                    card.style.top = '0px';
+                    card.style.left = '0px';
+                    card.style.width = '100vw';
+                    card.style.height = '100dvh';
+                    card.style.borderRadius = '0px';
+                    card.style.transform = 'none';
                     
                     // Lock body scroll on mobile using fixed position to prevent forced scroll
                     document.body.style.position = 'fixed';
@@ -674,29 +642,28 @@ card.style.transform = 'none';
                     document.body.style.left = '0';
                     document.body.style.right = '0';
                     document.body.style.overflow = 'hidden';
-} else {
-card.style.top = '50%';
-card.style.left = '50%';
-card.style.width = '90vw';
-card.style.height = '85vh';
-card.style.transform = 'translate(-50%, -50%)';
+                } else {
+                    card.style.top = '50%';
+                    card.style.left = '50%';
+                    card.style.width = '90vw';
+                    card.style.height = '85vh';
+                    card.style.transform = 'translate(-50%, -50%)';
                     document.body.style.overflow = 'hidden';
-}
+                }
+                
+                overlay.classList.add('active');
+            });
 
-overlay.classList.add('active');
-});
+            setTimeout(() => { isAnimating = false; }, 600);
+        }
 
-setTimeout(() => { isAnimating = false; }, 600);
-}
+        function closeAllCards() {
+            if (isAnimating) return;
+            const activeCards = document.querySelectorAll('.project-card.active');
+            if (activeCards.length === 0) return;
 
-function closeAllCards() {
-if (isAnimating) return;
-const activeCards = document.querySelectorAll('.project-card.active');
-if (activeCards.length === 0) return;
-
-isAnimating = true;
-
-            // Permitem scroll-ul imediat ce apasam X, astfel incat cutia sa culiseze odata cu pagina
+            isAnimating = true;
+            
             const isMobile = window.innerWidth <= 768;
             
             // Restore body scroll BEFORE animation so position calculations work
@@ -711,87 +678,83 @@ isAnimating = true;
                 document.body.style.overflow = 'auto';
             }
             
-overlay.classList.remove('active');
+            overlay.classList.remove('active');
 
-activeCards.forEach(card => {
-card.classList.remove('active');
+            activeCards.forEach(card => {
+                card.classList.remove('active');
+                
+                const placeholder = card._placeholder;
+                
+                if (placeholder) {
+                    card.style.transition = 'none';
 
-const placeholder = card._placeholder;
+                    const currentRect = card.getBoundingClientRect();
+                    const scrollY = window.scrollY;
+                    const scrollX = window.scrollX;
 
-if (placeholder) {
-                    // Schimbam din Fixed (fata de ecran) in Absolute (fata de document)
-card.style.transition = 'none';
-
-const currentRect = card.getBoundingClientRect();
-const scrollY = window.scrollY;
-const scrollX = window.scrollX;
-
-card.style.position = 'absolute';
+                    card.style.position = 'absolute';
                     card.style.transform = 'none';
-card.style.top = (currentRect.top + scrollY) + 'px';
-card.style.left = (currentRect.left + scrollX) + 'px';
-card.style.width = currentRect.width + 'px';
-card.style.height = currentRect.height + 'px';
+                    card.style.top = (currentRect.top + scrollY) + 'px';
+                    card.style.left = (currentRect.left + scrollX) + 'px';
+                    card.style.width = currentRect.width + 'px';
+                    card.style.height = currentRect.height + 'px';
 
-card.getBoundingClientRect(); // Reflow
+                    card.getBoundingClientRect(); // Reflow
 
-                    // Pornim tranzitia
-card.style.transition = '';
+                    card.style.transition = '';
 
-const targetRect = placeholder.getBoundingClientRect();
+                    const targetRect = placeholder.getBoundingClientRect();
+                    
+                    card.style.top = (targetRect.top + scrollY) + 'px';
+                    card.style.left = (targetRect.left + scrollX) + 'px';
+                    card.style.width = targetRect.width + 'px';
+                    card.style.height = targetRect.height + 'px';
+                    
+                    if (isMobile) {
+                        card.style.borderRadius = '32px';
+                    }
+                    
+                    setTimeout(() => {
+                        if (!card.classList.contains('active')) {
+                            card.style.position = '';
+                            card.style.top = '';
+                            card.style.left = '';
+                            card.style.width = '';
+                            card.style.height = '';
+                            card.style.margin = '';
+                            card.style.transform = '';
+                            card.style.zIndex = '';
+                            card.style.borderRadius = '';
+                            
+                            const ui = card.querySelector('.placeholder-ui');
+                            if (ui) {
+                                ui.style.width = '';
+                            }
+                            
+                            if (placeholder.parentNode) {
+                                placeholder.parentNode.removeChild(placeholder);
+                            }
+                            card._placeholder = null;
+                        }
+                    }, 600);
+                }
+            });
+            
+            setTimeout(() => { isAnimating = false; }, 600);
+        }
 
-                    // Directia spre grila, tinand cont de scroll (pentru a fi blocata pe document, nu pe ecran)
-card.style.top = (targetRect.top + scrollY) + 'px';
-card.style.left = (targetRect.left + scrollX) + 'px';
-card.style.width = targetRect.width + 'px';
-card.style.height = targetRect.height + 'px';
-
-if (isMobile) {
-card.style.borderRadius = '32px';
-}
-
-setTimeout(() => {
-if (!card.classList.contains('active')) {
-card.style.position = '';
-card.style.top = '';
-card.style.left = '';
-card.style.width = '';
-card.style.height = '';
-card.style.margin = '';
-card.style.transform = '';
-card.style.zIndex = '';
-card.style.borderRadius = '';
-
-                            // Eliberam restrictia de latime dupa terminarea animatiei
-const ui = card.querySelector('.placeholder-ui');
-if (ui) {
-ui.style.width = '';
-}
-
-if (placeholder.parentNode) {
-placeholder.parentNode.removeChild(placeholder);
-}
-card._placeholder = null;
-}
-}, 600);
-}
-});
-
-setTimeout(() => { isAnimating = false; }, 600);
-}
-
-document.addEventListener('keydown', (e) => {
-if (e.key === 'Escape') closeAllCards();
-});
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeAllCards();
+        });
 
         // Glow effect (desktop only)
-if (window.matchMedia("(pointer: fine)").matches) {
-const updateCursor = ({ x, y }) => {
-document.documentElement.style.setProperty('--x', x);
-document.documentElement.style.setProperty('--y', y);
-};
-document.body.addEventListener('pointermove', updateCursor);
-}
-</script>
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const updateCursor = ({ x, y }) => {
+                document.documentElement.style.setProperty('--x', x);
+                document.documentElement.style.setProperty('--y', y);
+            };
+            document.body.addEventListener('pointermove', updateCursor);
+        }
+    </script>
 </body>
 </html>
