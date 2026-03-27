@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --amoled-black: #000000;
+    --surface-grey: #121212;
+    --border-grey: #2a2a2a;
+    --text-dim: #a0a0a0;
+    --x: 50vw;
+    --y: 50vh;
+}
+
+body {
+    background-color: var(--amoled-black);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ── Top fade ── */
+.top-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--amoled-black) 20%, transparent 100%);
+    z-index: 30;
+    pointer-events: none;
+}
+
+/* ── Cards ── */
+.glass-card {
+    background: var(--surface-grey);
+    border: 1px solid var(--border-grey);
+    box-sizing: border-box;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card {
+    height: 300px;
+    cursor: pointer;
+    position: relative;
+    --active: 0;
+}
+
+.project-card:not(.active):hover {
+    --active: 1;
+}
+
+/* Glow border effect */
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+        circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+        rgba(255, 255, 255, 0.4),
+        transparent 250px
+    );
+    background-attachment: fixed;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: var(--active, 0);
+    transition: opacity 0.2s ease;
+    z-index: 20;
+}
+
+/* Glow inner effect */
+.project-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+        rgba(255, 255, 255, 0.05),
+        transparent 250px
+    );
+    background-attachment: fixed;
+    opacity: var(--active, 0);
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.project-card.active::before,
+.project-card.active::after {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .project-card::before,
+    .project-card::after {
+        display: none !important;
+    }
+}
+
+.project-card.active {
+    cursor: default;
+}
+
+/* ── Overlay ── */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 40;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── Card internals ── */
+.placeholder-ui {
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.project-card.active .placeholder-ui {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.content-hidden {
+    display: none !important;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+}
+
+.project-card.active .content-hidden {
+    display: flex !important;
+    opacity: 1;
+}
+
+/* ── Close button ── */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease 0.3s;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-card.active .close-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ── PPT frame ── */
+.ppt-frame {
+    background: #050505;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ── Mobile expanded layout ── */
+@media (max-width: 768px) {
+    .project-card.active .content-hidden {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .project-card.active .ppt-aspect-mobile {
+        flex: none !important;
+        width: 100% !important;
+        aspect-ratio: 16 / 9;
+        min-height: 0 !important;
+    }
+
+    .project-card.active .ppt-aspect-mobile-4-3 {
+        flex: none !important;
+        width: 100% !important;
+        aspect-ratio: 3 / 2;
+        min-height: 0 !important;
+    }
+
+    .project-card.active .iframe-outer-mobile {
+        flex: none !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--amoled-black); }
+::-webkit-scrollbar-thumb { background: var(--border-grey); border-radius: 10px; }
